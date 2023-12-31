@@ -1,11 +1,11 @@
 .list-post > h2 {
 	font-size: 15px;
 	font-weight: bold;
-	padding: 12px 0;
+	padding: 6px 0 3px 0;
 }
 
 .list-post li {
-	padding: 12px 0;
+	padding: 6px 0 3px 0;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
@@ -121,11 +121,11 @@
 
 @media screen and (max-width: 560px) {
 	.list-post > h2 {
-		padding: 10px 0;
+		padding:4px 0 2px 0;
 	}
 
 	.list-post li {
-		padding: 10px 0;
+		padding: 3px 0;
 	}
 
 	.list-post li .date {
@@ -141,7 +141,7 @@
 	}
 
 	.list-category h2 {
-		padding: 10px 0;
+		padding: 4px 0 2px 0;
 	}
 
 	.list-category div a {

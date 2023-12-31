@@ -165,7 +165,7 @@ a:hover:before {
 	border-radius: 5px;
    /* 卡片圆角 */
 	margin: 22px auto 0 auto;
-	padding: 3vh 3rem 7vh 3rem;
+	padding: 3vh 5% 7vh 5%;
  /* 内边距 */
 	background-color: #425066;
 	box-shadow: 0 5px 10px 4px rgb(0 0 0 / 13%);

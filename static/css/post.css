@@ -5,7 +5,7 @@
 }
 
 .page-post .title {     /* 文章名 */
-	font-size: 33px;
+	font-size: 30px;
 	font-weight: bold;
 	color: #4f321c;
 	line-height: 1;
@@ -33,7 +33,7 @@
 }
 
 .page-post .post h1 {
-	font-weight: normal;
+	font-weight: bold;
 	font-size: 20px;
 	position: relative;
 }
@@ -207,7 +207,9 @@
 
 @media screen and (max-width: 560px) {
 	.page-post {
-		font-size: 13px;
+		font-size: 16px;
+        text-align: justify;
+		letter-spacing: 0.5px;
 	}
 
 	.page-post .title {
