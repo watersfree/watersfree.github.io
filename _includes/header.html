@@ -1,0 +1,12 @@
+<header class="header select-none"> 
+ <nav class="menu"> 
+  <div class="header-flex"> 
+   <span class="left-header">                             <!-- 页面名 -->
+    <b> <a href="{{ site.domainUrl }}" class="hover-underline unique-title">{{ site.title }}</a></b>
+   </span> {% for menu in site.data.menu -%} 
+   <span class="right-header">                             <!-- 页面菜单 -->
+    <a href="{{ site.baseurl }}{{ menu.url }}" class="hover-underline others">{{ menu.title }}</a> {% endfor -%} 
+   </span> 
+  </div> 
+ </nav> 
+</header> 
