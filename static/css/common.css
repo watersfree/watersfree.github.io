@@ -134,7 +134,8 @@ body::-webkit-scrollbar {
 
 a {
 	position: relative;
-	color: #2aa198
+	color: #7bcfa6;
+
 }
 
 a:hover:after {
@@ -150,7 +151,7 @@ a:before {
 	bottom: -1px;
 	height: 1px;
 	width: 100%;
-	background: #2aa198;
+	background: #7bcfa6;
 	transform: scaleX(0);
 	transition: all 0.25s;
 }
@@ -244,7 +245,7 @@ footer {
 }
 
 .footer a {
-	color: #2aa198;
+	color: #7bcfa6;
 	padding: 0 4px;
 	white-space: nowrap;
 }
