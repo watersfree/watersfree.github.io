@@ -120,6 +120,22 @@
 	box-shadow: 0 2px 5px 2px rgb(0 0 0 / 2%);
 }
 
+.sign-bottom {
+	position: relative; /* 父容器设置为相对定位 */
+  /* 确保父容器有足够的大小 */
+    width: auto; /* 示例宽度 */
+    height: 12vh; /* 示例高度 */
+	margin-top: auto;
+}
+.sign-image {
+   position: absolute;
+   right: 3rem; /* 对齐到父容器的右边 */
+   bottom: 1vh; /* 对齐到父容器的底部 */
+   box-shadow: none !important;   /* 去除阴影 */
+   height: 10vh !important;
+}  
+
+
 .page-post img[alt='line'] {
 	display: inline-block;
 	vertical-align: middle;

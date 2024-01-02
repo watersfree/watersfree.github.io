@@ -1,6 +1,7 @@
 ---
 layout: mypost
 title: About
+hide_element: true
 ---
 # About
 

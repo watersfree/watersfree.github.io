@@ -166,7 +166,7 @@ a:hover:before {
 	border-radius: 5px;
    /* 卡片圆角 */
 	margin: 22px auto 0 auto;
-	padding: 3vh 5% 7vh 5%;
+	padding: 3vh 5% 3rem 5%;
  /* 内边距 */
 	background-color: #425066;
 	box-shadow: 0 5px 10px 4px rgb(0 0 0 / 13%);
@@ -373,9 +373,9 @@ hr {
 	color: #ffc773;    /* 签名颜色 */    
 }
 .centered-image {
-  display: block;       /* 使图片成为块级元素 */
-  max-width:  48rem;    /* 限制图片的最大宽度 */
-  width: 70vw; /* 图片宽度为视口宽度的 80% */
-  height: auto; /* 保持图片的纵横比 */
-  margin: 30px auto 15px auto;         /* 上下左右外边距自动，实现居中对齐 */
+   display: block;       /* 使图片成为块级元素 */
+   max-width:  48rem;    /* 限制图片的最大宽度 */
+   width: 70vw; /* 图片宽度为视口宽度的 80% */
+   height: auto; /* 保持图片的纵横比 */
+   margin: 30px auto 15px auto;         /* 上下左右外边距自动，实现居中对齐 */
 }

@@ -27,20 +27,26 @@
     {{ content }}
   </div>
   </div>
-
+    {% if page.hide_element != true %}
+      <div class="sign-bottom">
+        <img src="{{ site.url }}/static/img/sign.png" alt="签名" class="sign-image">
+      </div>
+    {% endif -%}
 <!--{% if site.extAdsense -%} 
   <div class="adsense" style="overflow: hidden;">
     {% include ext-adsense.html -%}
   </div>
   {% endif %}  
 {% include valine.html -%} -->
-  </div> {% include footer.html -%} 
+  </div>
+  {% include footer.html -%} 
   <div class="person"> 
    <div class="sign">
     天地生日月，神明寄乾坤
    </div> 
    <a href="/static/xml/rss.xml" class="hover-underline others" style="color: #70f3ff;">RSS</a> 
   </div> 
-  <hr class="bottom-fixed-divider" > {% include script.html -%}  
+  <hr class="bottom-fixed-divider" > 
+  {% include script.html -%}  
 </body>
 </html>

@@ -1,6 +1,7 @@
 ---
 layout: mypost
 title: Links
+hide_element: true
 ---
 
 # 友链页面
