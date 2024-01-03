@@ -1,5 +1,5 @@
 .list-post > h2 {
-	font-size: 15px;
+	font-size: 16px;
 	font-weight: bold;
 	padding: 6px 0 3px 0;
 }
@@ -131,15 +131,15 @@
 	}
 
 	.list-post li .date {
-		font-size: 12px;
+		font-size: 15px;
 	}
 
 	.list-post li .title {
-		font-size: 13px;
+		font-size: 15px;
 	}
 
 	.list-post li .category {
-		font-size: 11px;
+		font-size: 15px;
 	}
 
 	.list-category h2 {
@@ -147,6 +147,6 @@
 	}
 
 	.list-category div a {
-		font-size: 13px;
+		font-size: 15px;
 	}
 }

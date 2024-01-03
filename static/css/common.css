@@ -11,7 +11,7 @@
 
 html,
 body {
-	font-family: "SF Pro SC","PingFang SC",-apple-system,"Hiragino Sans GB",STXihei,"Microsoft YaHei",Heiti,sans-serif;
+	font-family:  'SF Pro SC','PingFang SC',-apple-system,'Hiragino Sans GB',STXihei,'Microsoft YaHei',Heiti,Arial,sans-serif;
 	font-Size: 17px;
 	line-Height: 1.7;
 	color: #503214;
@@ -308,11 +308,11 @@ footer {
 
 	.header .menu a {
 		margin: 0 4px;
-		font-size: 14px;
+		font-size: 15px;
 	}
 
 	.footer {
-		font-size: 13px;
+		font-size: 14px;
 	}
 }
 
