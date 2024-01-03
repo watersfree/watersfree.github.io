@@ -134,7 +134,7 @@ body::-webkit-scrollbar {
 
 a {
 	position: relative;
-	color: #7bcfa6;
+	color: #3de1ad;
 
 }
 
@@ -151,7 +151,7 @@ a:before {
 	bottom: -1px;
 	height: 1px;
 	width: 100%;
-	background: #7bcfa6;
+	background: currentColor;
 	transform: scaleX(0);
 	transition: all 0.25s;
 }
@@ -216,7 +216,7 @@ body {
 }
 
 .header .unique-title {
- /* color: #007bff;  示例：更改链接颜色 */
+    color: #00e09e;  /* 示例：更改链接颜色 */
  /* font-size: 40px !important;/* 示例：更改字体大小
     font-weight: bold;示例：字体加粗 */
  /* text-decoration: none;  示例：去掉下划线 */
@@ -245,7 +245,7 @@ footer {
 }
 
 .footer a {
-	color: #7bcfa6;
+	color: #3de1ad;
 	padding: 0 4px;
 	white-space: nowrap;
 }
@@ -342,9 +342,7 @@ hr {
 }
 
 .others {
-  /* 为每个元素添加必要的样式 */
 	margin-left: 10px;
- /* 如果需要，在元素之间添加一些间隔 */
 }
 
 .bottom-fixed-divider {

@@ -7,7 +7,7 @@
 .page-post .title {     /* 文章名 */
 	font-size: 30px;
 	font-weight: bold;
-	color: #7bcfa6;
+	color: #00e09e;
 	line-height: 1;
 	padding-bottom: 16px;
 	margin-top: 30px;
@@ -73,7 +73,7 @@
 	top: 0;
 	font-weight: bold;
 	padding-right: 6px;
-	color: #7bcfa6;
+	color: #3de1ad;
 }
 
 .page-post .post h4::before {
@@ -81,7 +81,7 @@
 	top: 0;
 	font-weight: bold;
 	padding-right: 6px;
-	color: #7bcfa6;
+	color: #3de1ad;
 }
 
 .page-post blockquote {
