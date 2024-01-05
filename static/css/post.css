@@ -7,7 +7,7 @@
 .page-post .title {     /* 文章名 */
 	font-size: 30px;
 	font-weight: bold;
-	color: #00e09e;
+	color: #42c1a1;
 	line-height: 1;
 	padding-bottom: 16px;
 	margin-top: 30px;
@@ -92,7 +92,7 @@
 
 .page-post strong,
 .page-post b {
-	color: #e0f0e9;
+	color: #cccccc;
 }
 
 .page-post .post ul {

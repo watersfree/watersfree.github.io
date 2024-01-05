@@ -15,7 +15,7 @@ body {
 	font-Size: 17px;
 	line-Height: 1.7;
 	color: #c2ccd0;
-	background-Color: #424c50;
+	background-Color: #323232;
   /* 背景颜色 */
 	text-Rendering: optimizeLegibility;
 	-webkit-font-smoothing: subpixel-antialiased;
@@ -171,8 +171,8 @@ a:hover:before {
 	background-color: #425066;
 	box-shadow: 0 5px 10px 4px rgb(0 0 0 / 13%);
  /* 卡片阴影效果 */
-	color: #e0f0e9;
-	background: #75878a;
+	color: #cccccc;
+	background: #292929;
  /* 卡片背景颜色 */
 }
 
