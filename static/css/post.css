@@ -29,7 +29,7 @@
 .page-post .post > iframe {
 	margin: 0;
 	width: 100%;
-	background-color: #75878a;
+	background-color: #303030;
 }
 
 .page-post .post h1 {
@@ -86,7 +86,7 @@
 
 .page-post blockquote {
 	border-left: 3px solid #333333;
-	background-color: #75878a;
+	background-color: #303030;
 	padding: 9px 9px 9px 15px;
 }
 
@@ -146,7 +146,7 @@
 }
 
 .page-post code {
-	background-color: #75878a;
+	background-color: #303030;
 	word-break: break-all;
 	padding: 0 4px;
 	margin: 0 2px;
@@ -159,7 +159,7 @@
 	padding: 10px;
 	overflow: auto;
 	border-radius: 2px;
-	background-color: #7B888E;
+	background-color: #303030;
  /* 背景颜色 */
 	max-height: 610px;
 	-moz-tab-size: 4;
@@ -203,7 +203,7 @@
 }
 
 .page-post table tr:nth-child(even) {
-	background-color: #75878a;
+	background-color: #303030;
 }
 
 .page-post .table-container {
