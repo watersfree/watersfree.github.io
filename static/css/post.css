@@ -36,6 +36,7 @@
 	font-weight: bold;
 	font-size: 20px;
 	position: relative;
+	display: none;
 }
 
 .page-post .post h2 {
@@ -53,7 +54,7 @@
 }
 
 .page-post .post h2::before {
-	content: '##';
+	content: '#';
 	top: 0;
 	font-weight: bold;
 	padding-right: 6px;
