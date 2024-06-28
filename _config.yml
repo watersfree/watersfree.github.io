@@ -18,6 +18,11 @@ exclude: ['CNAME', 'README.md', 'LICENSE', '_site', 'dist', 'Gemfile', 'Gemfile.
 domainUrl: 'https://watersfree.github.io'
 baseurl: ''
 
+url: "https://watersfree.github.io" # the base hostname & protocol for your site
+plugins:
+  - jekyll-sitemap
+  
+
 # 点击页面文字冒出特效,不需要请设置为false
 extClickEffect: true
 
