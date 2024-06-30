@@ -4,7 +4,7 @@
 	word-break: break-all;
 }
 
-.page-post .title {     /* 文章名 */
+.page-post .h1 {     /* 文章名 */
 	font-size: 30px;
 	font-weight: bold;
 	color: #42c1a1;
@@ -32,12 +32,6 @@
 	background-color: #292929;
 }
 
-.page-post .post h1 {
-	font-weight: bold;
-	font-size: 20px;
-	position: relative;
-	display: none;
-}
 
 .page-post .post h2 {
 	font-weight: normal;
