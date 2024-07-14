@@ -30,6 +30,15 @@
   gtag('config', 'G-QJDQWPXWFS');
 </script>
 
+<script>
+  // 页面加载时执行
+  window.onload = function () {
+    if (window.location.href.includes('404.html')) {
+      // 跳转到主页
+      window.location.href = 'https://watersfree.github.io/'; 
+    }
+  };
+</script>
 
 
 {%- if site.extMath and page.layout=="mypost" -%}
