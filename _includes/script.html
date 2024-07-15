@@ -31,14 +31,15 @@
 </script>
 
 <script>
-  // 页面加载时执行
-  window.onload = function () {
-    if (window.location.href.includes('404.html')) {
-      // 跳转到主页
-      window.location.href = 'https://watersfree.github.io/'; 
-    }
-  };
+// 页面加载时执行
+window.onload = function () {
+  if (window.location.href.includes('404.html') || window.location.href.includes('posts/2024/04/02/115%E6%9C%AC%E5%9C%B0%E6%8C%82%E8%BD%BD(%E5%AE%89%E5%8D%93+windows).html')) {
+    // 跳转到主页
+    window.location.href = 'https://watersfree.github.io/'; 
+  }
+};
 </script>
+
 
 
 {%- if site.extMath and page.layout=="mypost" -%}
