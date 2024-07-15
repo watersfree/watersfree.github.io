@@ -2,7 +2,7 @@
 layout: mypost
 title: Chrome拓展插件推荐
 categories: [Chrome]
-
+toc: true
 ---
 
 

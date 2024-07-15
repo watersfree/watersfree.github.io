@@ -174,7 +174,58 @@ a:hover:before {
 	color: #cccccc;
 	background: #292929;
  /* 卡片背景颜色 */
+    position: relative;
 }
+
+.floating-directory {
+  position: fixed;  /* 改为 fixed 以确保始终可见 */
+  top: 50%;
+  transform: translateY(-50%);  /* 调整顶部距离 */
+  right: 5vw;  /* 调整右侧距离 */
+  width: 250px;
+  max-height: calc(100vh - 120px);
+  overflow-y: auto;
+  background-color: #323232;
+  border-radius: 5px;
+  padding: 15px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  font-size: 14px;
+  line-height: 1.5;
+  color: #c2ccd0;
+  z-index: 1000;  /* 确保在其他内容之上 */
+}
+@media screen and (max-width: 1800px) {
+  body .floating-directory {
+    display: none !important;
+  }
+}
+
+.floating-directory h2 {
+    margin-top: 0;
+    font-size: 18px;
+    color: #3de1ad; /* 与链接颜色匹配 */
+    margin-bottom: 10px;
+}
+
+.floating-directory ul {
+    padding-left: 15px;
+    list-style-type: none;
+}
+
+.floating-directory li {
+    margin-bottom: 5px;
+}
+
+.floating-directory a {
+    color: #c2ccd0; /* 与页面文字颜色匹配 */
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.floating-directory a:hover {
+    color: #3de1ad; /* 与链接颜色匹配 */
+}
+
 
 body {
 	max-width: 1024px;
