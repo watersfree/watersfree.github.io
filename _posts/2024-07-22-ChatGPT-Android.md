@@ -1,17 +1,17 @@
 ---
 layout: mypost
-title: 三步解决安卓ChatGPT无法登录
+title: 三步解决安卓ChatGPT无法登录谷歌账号
 categories: [AI,Android] 
 toc: true
 ---
 
-# 三步解决安卓ChatGPT无法登录
+# 三步解决安卓ChatGPT无法登录谷歌账号
 
 安卓上ChatGPT突然登录不上了，我一开始以为是我的网络，切换不同IP地址，仍旧无法解决。通过互联网搜索和AI寻找解决方案，还是登录不上，即使是切换不同登录方式，正当我陷入无助时，小圈子给了我惊喜，终于找到了答案。以下是我遇到的问题，如果你也遇到类似问题，那么我的方法可供你参考。
 
 ![1](https://thumbsnap.com/i/KmuAd3Dk.png)
 
-- 谷歌登录方式，加载一会，自动退回登录界面。
+- 谷歌账号登录方式，加载一会，自动退回登录界面。
 
 ![2](https://thumbsnap.com/i/SA2QH73L.png)
 
