@@ -10,6 +10,10 @@ layout: null
     <language>zh-CN</language>
     <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
     <lastBuildDate>{{site.time | date_to_rfc822}}</lastBuildDate>
+	<follow_challenge>
+    <feedId>57445370354478080</feedId>
+    <userId>41719698145248256</userId>
+    </follow_challenge>
     <generator>Jekyll v{{ jekyll.version }}</generator>
     <atom:link href="{{ site.domainUrl | append: site.baseurl }}/static/xml/rss.xml" rel="self" type="application/rss+xml" />
     {%- for post in site.posts %}
