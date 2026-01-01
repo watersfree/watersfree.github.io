@@ -1,9 +1,7 @@
 // 搜索功能
-blog.addLoadEvent(function() {
-  // 标题等信息
-  var titles = []
-  // 正文内容
-  var contents = []
+blog.addLoadEvent(function () {
+  // 文章数据
+  var posts = []
   // 上一次输入
   var keyBefore = ''
   // IOS 键盘中文输入bug
@@ -23,16 +21,16 @@ blog.addLoadEvent(function() {
     blog.ajax(
       {
         timeout: 20000,
-        url: blog.baseurl + '/static/xml/search.xml'
+        url: blog.baseurl + '/static/xml/search.json'
       },
-      function(data) {
+      function (data) {
         localStorage.db = data
         localStorage.dbVersion = blog.buildAt
         initContentDB()
         search(document.querySelector('#search-input').value)
         loadingDOM.style.opacity = 0
       },
-      function() {
+      function () {
         console.error('全文检索数据加载失败...')
       }
     )
@@ -41,17 +39,14 @@ blog.addLoadEvent(function() {
   if (localStorage.db) {
     initContentDB()
   }
-  document.querySelectorAll('.list-search .title').forEach(function(title) {
-    titles.push(title.innerHTML)
-  })
 
   function initContentDB() {
-    var root = document.createElement('div')
-    root.innerHTML = localStorage.db
-    root.querySelectorAll('li').forEach(function(content) {
-      var str = content.innerHTML
-      contents.push(str)
-    })
+    try {
+      posts = JSON.parse(localStorage.db)
+    } catch (e) {
+      console.error('解析搜索数据失败:', e)
+      posts = []
+    }
   }
 
   function search(key) {
@@ -59,55 +54,58 @@ blog.addLoadEvent(function() {
     if (key == keyBefore) {
       return
     }
-    // <>& 替换
-    key = key.replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/&/g, '&amp;')
-
     keyBefore = key
+
     var doms = document.querySelectorAll('.list-search li')
     var h1 = '<span class="hint">'
     var h2 = '</span>'
-    for (let i = 0; i < doms.length; i++) {
-      var title = titles[i]
-      var content = contents[i]
+
+    for (let i = 0; i < posts.length && i < doms.length; i++) {
+      var post = posts[i]
+      var title = post.title || ''
+      var content = post.content || ''
       var dom_li = doms[i]
       var dom_title = dom_li.querySelector('.title')
       var dom_content = dom_li.querySelector('.content')
 
-      dom_title.innerHTML = title
-      dom_content.innerHTML = ''
+      // 重置内容
+      dom_title.textContent = title
+      dom_content.textContent = ''
 
       // 空字符隐藏
       if (key == '') {
         dom_li.setAttribute('hidden', true)
         continue
       }
+
       var hide = true
-      var r1 = new RegExp(blog.encodeRegChar(key), 'gi')
-      var r2 = new RegExp(blog.encodeRegChar(key), 'i')
+      var escapedKey = blog.encodeRegChar(key)
+      var r1 = new RegExp(escapedKey, 'gi')
+      var r2 = new RegExp(escapedKey, 'i')
 
       // 标题全局替换
       if (r1.test(title)) {
         hide = false
-        dom_title.innerHTML = title.replace(r1, h1 + key + h2)
+        dom_title.innerHTML = blog.encodeHtml(title).replace(r1, h1 + blog.encodeHtml(key) + h2)
       }
+
       // 内容先找到第一个，然后确定100个字符，再对这100个字符做全局替换
       var cResult = r2.exec(content)
       if (cResult) {
         hide = false
-        index = cResult.index
+        var index = cResult.index
         var leftShifting = 10
-        var left = index - leftShifting
-        var right = index + (100 - leftShifting)
-        if (left < 0) {
-          right = right - left
-        }
-        content = content.substring(left, right)
-        dom_content.innerHTML = content.replace(r1, h1 + key + h2) + '...'
+        var left = Math.max(0, index - leftShifting)
+        var right = left + 100
+        var snippet = content.substring(left, right)
+        dom_content.innerHTML = blog.encodeHtml(snippet).replace(r1, h1 + blog.encodeHtml(key) + h2) + '...'
       }
+
       // 内容未命中标题命中，内容直接展示前100个字符
       if (!cResult && !hide && content) {
-        dom_content.innerHTML = content.substring(0, 100) + '...'
+        dom_content.textContent = content.substring(0, 100) + '...'
       }
+
       if (hide) {
         dom_li.setAttribute('hidden', true)
       } else {
@@ -117,15 +115,15 @@ blog.addLoadEvent(function() {
   }
 
   var input = document.getElementById('search-input')
-  blog.addEvent(input, 'input', function(event) {
+  blog.addEvent(input, 'input', function (event) {
     if (!inputLock) {
       search(event.target.value)
     }
   })
-  blog.addEvent(input, 'compositionstart', function(event) {
+  blog.addEvent(input, 'compositionstart', function () {
     inputLock = true
   })
-  blog.addEvent(input, 'compositionend', function(event) {
+  blog.addEvent(input, 'compositionend', function (event) {
     inputLock = false
     search(event.target.value)
   })

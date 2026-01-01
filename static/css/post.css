@@ -1,3 +1,11 @@
+/* Header Flex 样式 (从 mypost.html 提取) */
+.header-flex {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  color: #3de1ad;
+}
+
 .page-post {
 	font-size: 17px;
 	line-height: 2;

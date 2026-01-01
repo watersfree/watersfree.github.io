@@ -38,15 +38,7 @@ blog.addLoadEvent = function (func) {
  * @param {是否捕获} useCapture
  */
 blog.addEvent = function (dom, eventName, func, useCapture) {
-  if (window.attachEvent) {
-    dom.attachEvent('on' + eventName, func)
-  } else if (window.addEventListener) {
-    if (useCapture != undefined && useCapture === true) {
-      dom.addEventListener(eventName, func, true)
-    } else {
-      dom.addEventListener(eventName, func, false)
-    }
-  }
+  dom.addEventListener(eventName, func, !!useCapture)
 }
 
 /**
@@ -55,11 +47,7 @@ blog.addEvent = function (dom, eventName, func, useCapture) {
  * @param {class名} className
  */
 blog.addClass = function (dom, className) {
-  if (!blog.hasClass(dom, className)) {
-    var c = dom.className || ''
-    dom.className = c + ' ' + className
-    dom.className = blog.trim(dom.className)
-  }
+  dom.classList.add(className)
 }
 
 /**
@@ -68,11 +56,7 @@ blog.addClass = function (dom, className) {
  * @param {class名} className
  */
 blog.hasClass = function (dom, className) {
-  var list = (dom.className || '').split(/\s+/)
-  for (var i = 0; i < list.length; i++) {
-    if (list[i] == className) return true
-  }
-  return false
+  return dom.classList.contains(className)
 }
 
 /**
@@ -81,14 +65,7 @@ blog.hasClass = function (dom, className) {
  * @param {class名} className
  */
 blog.removeClass = function (dom, className) {
-  if (blog.hasClass(dom, className)) {
-    var list = (dom.className || '').split(/\s+/)
-    var newName = ''
-    for (var i = 0; i < list.length; i++) {
-      if (list[i] != className) newName = newName + ' ' + list[i]
-    }
-    dom.className = blog.trim(newName)
-  }
+  dom.classList.remove(className)
 }
 
 /**
@@ -97,11 +74,7 @@ blog.removeClass = function (dom, className) {
  * @param {class名} className
  */
 blog.toggleClass = function (dom, className) {
-  if (blog.hasClass(dom, className)) {
-    blog.removeClass(dom, className)
-  } else {
-    blog.addClass(dom, className)
-  }
+  dom.classList.toggle(className)
 }
 
 /**
@@ -113,21 +86,10 @@ blog.trim = function (str) {
 }
 
 /**
- * 工具，转义html字符
- * @param {字符串} str
- */
-blog.htmlEscape = function (str) {
-  var temp = document.createElement('div')
-  temp.innerText = str
-  str = temp.innerHTML
-  temp = null
-  return str
-}
-
-/**
  * 工具，转换实体字符防止XSS
- * @param {字符串} str
+ * @param {字符串} html
  */
+
 blog.encodeHtml = function (html) {
   var o = document.createElement('div')
   o.innerText = html
@@ -135,6 +97,8 @@ blog.encodeHtml = function (html) {
   o = null
   return temp
 }
+// 别名保持向后兼容
+blog.htmlEscape = blog.encodeHtml
 
 /**
  * 工具， 转义正则关键字
@@ -151,52 +115,39 @@ blog.encodeRegChar = function (str) {
 }
 
 /**
- * 工具，Ajax
- * @param {字符串} str
+ * 工具，Ajax (使用 Fetch API)
+ * @param {Object} option - 配置项 {url, method, timeout}
+ * @param {Function} success - 成功回调
+ * @param {Function} fail - 失败回调
  */
 blog.ajax = function (option, success, fail) {
-  var xmlHttp = null
-  if (window.XMLHttpRequest) {
-    xmlHttp = new XMLHttpRequest()
-  } else {
-    xmlHttp = new ActiveXObject('Microsoft.XMLHTTP')
-  }
-  var url = option.url
-  var method = (option.method || 'GET').toUpperCase()
-  var sync = option.sync === false ? false : true
+  var controller = new AbortController()
   var timeout = option.timeout || 10000
-
-  var timer
-  var isTimeout = false
-  xmlHttp.open(method, url, sync)
-  xmlHttp.onreadystatechange = function () {
-    if (isTimeout) {
-      fail({
-        error: '请求超时'
-      })
-    } else {
-      if (xmlHttp.readyState == 4) {
-        if (xmlHttp.status == 200) {
-          success(xmlHttp.responseText)
-        } else {
-          fail({
-            error: '状态错误',
-            code: xmlHttp.status
-          })
-        }
-        //清除未执行的定时函数
-        clearTimeout(timer)
-      }
-    }
-  }
-  timer = setTimeout(function () {
-    isTimeout = true
-    fail({
-      error: '请求超时'
-    })
-    xmlHttp.abort()
+  
+  var timeoutId = setTimeout(function() {
+    controller.abort()
   }, timeout)
-  xmlHttp.send()
+  
+  fetch(option.url, {
+    method: option.method || 'GET',
+    signal: controller.signal
+  })
+  .then(function(response) {
+    clearTimeout(timeoutId)
+    if (!response.ok) {
+      throw { error: '状态错误', code: response.status }
+    }
+    return response.text()
+  })
+  .then(success)
+  .catch(function(error) {
+    clearTimeout(timeoutId)
+    if (error.name === 'AbortError') {
+      fail({ error: '请求超时' })
+    } else {
+      fail(error)
+    }
+  })
 }
 
 /**

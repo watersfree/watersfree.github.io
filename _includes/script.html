@@ -1,6 +1,6 @@
 <!-- 脚本加载 -->
 {%- assign buildAt = site.time | date: "%Y%m%d%H%M%S" -%}
-<script>window.blog={baseurl:"{{site.baseurl}}", buildAt:"{{buildAt}}"}</script>
+<script>window.blog = { baseurl: "{{site.baseurl}}", buildAt: "{{buildAt}}" }</script>
 <script type="text/javascript" src="{{site.baseurl}}/static/js/blog.js?t={{ buildAt }}"></script>
 {% if page.searchPage -%}
 <script type="text/javascript" src="{{site.baseurl}}/static/js/search.js?t={{ buildAt }}"></script>
@@ -9,10 +9,10 @@
 {%- if site.extClickEffect %}
 <!-- 点击页面文字冒出特效 -->
 <script>
-;(function(){
-  var textArr = ['道生一','一生二', '二生三']
-  window.blog.initClickEffect(textArr)
-})()
+    ; (function () {
+      var textArr = ['道生一', '一生二', '二生三']
+      window.blog.initClickEffect(textArr)
+    })()
 </script>
 {% endif %}
 
@@ -24,37 +24,26 @@
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-QJDQWPXWFS"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
+  function gtag() { dataLayer.push(arguments); }
   gtag('js', new Date());
 
   gtag('config', 'G-QJDQWPXWFS');
 </script>
 
 <script>
-// 页面加载时执行
-window.onload = function () {
-  if (window.location.href.includes('404.html') || window.location.href.includes('posts/2024/04/02/115%E6%9C%AC%E5%9C%B0%E6%8C%82%E8%BD%BD(%E5%AE%89%E5%8D%93+windows).html')) {
-    // 跳转到主页
-    window.location.href = 'https://watersfree.github.io/'; 
-  }
-};
-</script>
-
-<script>
-
-function toggleTocVisibility() {
-  var toc = document.querySelector('.floating-directory');
-  if (toc) {
-	if (window.innerWidth > 1000) {
-	  toc.style.display = 'block';
-	} else {
-	  toc.style.display = 'none';
-	}
-  }
-};
+  // 页面加载时执行（使用addLoadEvent避免覆盖其他onload）
+  blog.addLoadEvent(function () {
+    if (window.location.href.includes('404.html') || window.location.href.includes('posts/2024/04/02/115%E6%9C%AC%E5%9C%B0%E6%8C%82%E8%BD%BD(%E5%AE%89%E5%8D%93+windows).html')) {
+      window.location.href = 'https://watersfree.github.io/';
+    }
+  });
 </script>
 
 
 {%- if site.extMath and page.layout=="mypost" -%}
 {% include ext-mathjax.html %}
 {% endif %}
+
+{%- if page.layout == "mypost" or page.layout == "page" -%}
+<script defer src='//unpkg.com/valine/dist/Valine.min.js'></script>
+{%- endif %}
