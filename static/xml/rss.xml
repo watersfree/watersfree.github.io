@@ -4,9 +4,9 @@ layout: null
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{site.title}}</title>
+    <title>{{site.title | xml_escape}}</title>
     <link>{{site.domainUrl | append: site.baseurl }}</link>
-    <description>{{site.description}}</description>
+    <description>{{site.description | xml_escape}}</description>
     <language>zh-CN</language>
     <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
     <lastBuildDate>{{site.time | date_to_rfc822}}</lastBuildDate>
@@ -22,7 +22,7 @@ layout: null
       <link>{{site.domainUrl | append: site.baseurl | append: post.url}}</link>
       <description>{{post.content | strip_html | strip_newlines | replace: " ", "" | replace: "	", "" | truncate: 120 | escape}}</description>
       <pubDate>{{post.date | date_to_rfc822}}</pubDate>
-      <gui>{{site.domainUrl | append: site.baseurl | append: post.url}}</gui>
+      <guid isPermaLink="true">{{site.domainUrl | append: site.baseurl | append: post.url}}</guid>
     </item>
     {%- endfor %}
   </channel>

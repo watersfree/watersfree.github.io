@@ -1,8 +1,5 @@
 User-agent: *
 Allow: /
-Allow: /about/
-Allow: /categories/
-Allow: /links/
 
 
 Sitemap: https://watersfree.github.io/static/xml/sitemap.xml

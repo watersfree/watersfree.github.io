@@ -1,22 +1,41 @@
 {%- assign buildAt = site.time | date: "%Y%m%d%H%M%S" -%}
 
 <head>
-  <title>{{ page.title }} - {{ site.title }}</title>
+  {%- assign page_description = page.description | default: page.excerpt | default: site.description | strip_html | normalize_whitespace | truncate: 160 -%}
+  {%- assign canonical_url = page.url | replace: 'index.html', '' | absolute_url -%}
+  <title>{{ page.title | escape }} - {{ site.title | escape }}</title>
   <meta http-equiv="content-type" content="text/html; charset=utf-8" />
   <meta http-equiv="content-language" content="zh-CN" />
-  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="applicable-device" content="pc,mobile">
   <meta name="google-site-verification" content="dKwTn32HkFbSAfeiVn70UQDoPLxwb3ibMs90Gr6XMBg" />
   <!--去Google Search Console网站输入域名替换 -->
   <meta name="msvalidate.01" content="DDF0247499303DFDB1AB3261B0EC0630" />
   <meta name="author" content="{{ site.author }}" />
-  {%- if page.categories %}
-  <meta name="description" content="{{ page.title }}" />
-  <meta name="keywords" content="{{ site.author }}{% for category in page.categories %},{{ category }}{% endfor %}" />
-  {% else %}
-  <meta name="description" content="{{ site.description }}" />
-  <meta name="keywords" content="{{ site.keywords }}" />
-  {% endif -%}
+  <meta name="description" content="{{ page_description | escape }}" />
+  <link rel="canonical" href="{{ canonical_url | escape }}" />
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ '/static/xml/rss.xml' | absolute_url }}" />
+  <meta property="og:locale" content="zh_CN" />
+  <meta property="og:site_name" content="{{ site.title | escape }}" />
+  <meta property="og:title" content="{{ page.title | escape }}" />
+  <meta property="og:description" content="{{ page_description | escape }}" />
+  <meta property="og:url" content="{{ canonical_url | escape }}" />
+  <meta property="og:type" content="{% if page.collection == 'posts' %}article{% else %}website{% endif %}" />
+  {% if page.collection == 'posts' %}
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "headline": {{ page.title | jsonify }},
+    "description": {{ page_description | jsonify }},
+    "url": {{ canonical_url | jsonify }},
+    "mainEntityOfPage": {{ canonical_url | jsonify }},
+    "datePublished": {{ page.date | date_to_xmlschema | jsonify }},
+    {% if page.last_modified_at %}"dateModified": {{ page.last_modified_at | date_to_xmlschema | jsonify }},{% endif %}
+    "author": {"@type": "Person", "name": {{ site.author | jsonify }}, "url": {{ '/pages/about.html' | absolute_url | jsonify }}}
+  }
+  </script>
+  {% endif %}
   <link rel="icon" href="{{site.baseurl}}/favicon.ico" type="image/x-icon" />
   <link rel="shortcut icon" href="{{site.baseurl}}/favicon.ico" type="image/x-icon" />
   <link rel="stylesheet" href="{{site.baseurl}}/static/css/common.css?t={{buildAt}}">

@@ -4,21 +4,21 @@ layout: null
 <?xml version="1.0" encoding="utf-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
-    <title>{{site.title}}</title>
+    <title>{{site.title | xml_escape}}</title>
     <link>{{site.domainUrl | append: site.baseurl }}</link>
-    <description>{{site.description}}</description>
+    <description>{{site.description | xml_escape}}</description>
     <language>zh-CN</language>
     <pubDate>{{ site.time | date_to_rfc822 }}</pubDate>
     <lastBuildDate>{{site.time | date_to_rfc822}}</lastBuildDate>
     <generator>Jekyll v{{ jekyll.version }}</generator>
-    <atom:link href="{{ site.domainUrl | append: site.baseurl }}/static/xml/rss.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="{{ site.domainUrl | append: site.baseurl }}/feed.xml" rel="self" type="application/rss+xml" />
     {%- for post in site.posts %}
     <item>
       <title>{{post.title | escape}}</title>
       <link>{{site.domainUrl | append: site.baseurl | append: post.url}}</link>
-      <description>{{post.content}}</description>
+      <description>{{post.content | xml_escape}}</description>
       <pubDate>{{post.date | date_to_rfc822}}</pubDate>
-      <gui>{{site.domainUrl | append: site.baseurl | append: post.url}}</gui>
+      <guid isPermaLink="true">{{site.domainUrl | append: site.baseurl | append: post.url}}</guid>
     </item>
     {%- endfor %}
   </channel>
